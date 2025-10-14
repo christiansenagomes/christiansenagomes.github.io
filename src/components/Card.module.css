@@ -1,8 +1,9 @@
 .card {
     display: flex;
     flex-direction: column; 
-    background-color: #8db0ca;
+    background-color: #518fc233;
     flex: 1; 
+    flex-basis: auto;
     padding: 25px 40px;
     margin: 10px;
     border-radius: 5px;
@@ -28,6 +29,11 @@
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+}
+
+.cardAccessAction:hover {
+    transform: translate(0, -1px);
+    box-shadow: 0 20px 80px -15px #091119;
 }
 
 .cardDeleteAction {
