@@ -15,7 +15,7 @@ export default function Home() {
     return (
         <Container>
             {subjects.map(subject => (
-                <Card color="#3c3c3c" borderColor="black"/>
+                <Card key={subject.id.toString()} id={subject.id.toString()} name={subject.name.toString()}/>
             ))}
             {/* <Card borderColor="#ffaaff" color="#ffddff"/>
             <Card borderColor="#aaffff" color="#ddffff"/>

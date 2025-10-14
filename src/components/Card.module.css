@@ -1,0 +1,40 @@
+.card {
+    display: flex;
+    flex-direction: column; 
+    background-color: #8db0ca;
+    flex: 1; 
+    padding: 25px 40px;
+    margin: 10px;
+    border-radius: 5px;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.cardName {
+    color: #091119;
+    font-weight: 600;
+}
+
+.cardActionsDiv {
+    display: flex;
+}
+
+.cardAccessAction {
+    flex: 1;
+    padding: 10px 25px;
+    border-radius: 3px;
+    background-color: #5390c2;
+    color: #09111b;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cardDeleteAction {
+    flex:1;
+    padding: 10px 25px;
+    border-radius: 3px;
+    background-color: darkred;
+    color: #09111b;
+    cursor: pointer
+}

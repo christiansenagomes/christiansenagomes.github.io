@@ -1,21 +1,22 @@
 import { NavLink } from "react-router";
+import styles from './Card.Module.css';
 
 type CardProps = {
-    color: string;
-    borderColor: string;
+    id: string;
+    name: string;
 }
 
-export default function Card({ color, borderColor }: CardProps) {
+export default function Card({ id, name }: CardProps) {
     return (
-        <div style={{display: "flex", flexDirection: "column", backgroundColor: color, border: `solid 10px ${borderColor}`, borderWidth: "10px 10px 0 10px", flex: "1", padding: "20px", margin: "10px", borderRadius: "5px"}}>
-            <p style={{color: "#3c3c3c", fontWeight: "bold"}}>Nome</p>
-            <div style={{marginTop: "50px", display: "flex", justifyContent: "space-between", gap:"10px"}}>
-                <NavLink to="/subject/4" style={{flex: 1, padding: "10px 25px", border: "solid 2px green", borderRadius: "3px", backgroundColor: "green", color: "#fcfcfc", cursor: "pointer"}}>
+        <div className={styles.card}>
+            <p className={styles.cardName}>{name}</p>
+            <div className={styles.cardActionsDiv}>
+                <NavLink to={`/subject/${id}`} className={styles.cardAccessAction}>
                     Acessar
                 </NavLink>
-                <button style={{flex:1, padding: "10px 25px", border:"solid 2px darkred", borderRadius: "3px", backgroundColor: "darkred", color: "#bbbbbb", cursor: "pointer"}}>
+                {/* <button className={styles.cardDeleteAction}>
                     Deletar
-                </button>
+                </button> */}
             </div>
         </div>
     );
