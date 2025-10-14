@@ -1,6 +1,12 @@
+type ContentType = {
+    id: number;
+    type: "image" | "text";
+}
+
 export type SubjectType = {
     id: Number;
     name: String;
+    content: ContentType[];
 };
 
 export const StudyStorage = {
