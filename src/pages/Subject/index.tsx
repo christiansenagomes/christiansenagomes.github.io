@@ -1,13 +1,12 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
-import type { SubjectType, ContentType } from "../../constants";
+import type { SubjectType } from "../../constants";
 import Container from "../../components/Container";
 import styles from "../Subject/Subject.module.css";
 import Post from "../../components/Post";
 
 import { db } from "../../DB/db";
-import { addContentLS } from "../../DB/localStorageHelper";
 import { getSubjectNotes } from "../../DB/dbHelper";
 
 async function imagePost(subjectId: number, data: File) {
