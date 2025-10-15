@@ -1,38 +1,59 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
-import type { SubjectType } from "../../constants";
+import type { SubjectType, ContentType } from "../../constants";
 import Container from "../../components/Container";
 import styles from "../Subject/Subject.module.css";
 import Post from "../../components/Post";
 
 import { db } from "../../DB/db";
+import { addContentLS } from "../../DB/localStorageHelper";
+import { getSubjectNotes } from "../../DB/dbHelper";
 
-async function imagePost(data: File) {
-    return;
+async function imagePost(subjectId: number, data: File) {
+    await db.images.add({
+      subjectId: subjectId,
+      data: data,
+      creationDate: new Date(),
+    });
 }
 
-async function textPost(data: string) {
-    console.log(data);
-    return;
+async function textPost(subjectId: number, data: string) {
+    await db.textContents.add({
+      subjectId: subjectId,
+      data: data,
+      creationDate: new Date(),
+    });
 }
 
 export default function Subject() {
     const [selectedType, setSelectedType] = useState("text");
     const [textData, setTextData] = useState<string>();
     const [imageData, setImageData] = useState<File>();
+    const [notes, setNotes] = useState<{
+        id: number;
+        type: "text" | "image";
+        data: string | Blob;
+        creationDate: Date;
+    }[]>([]);
+
 
     useEffect(() => {
         setTextData(undefined);
         setImageData(undefined);
     }, [ selectedType ])
 
-    function handleCreate() {
+    useEffect(() => {
+        getSubjectNotes(Number(params.id)).then(setNotes);
+    }, [])
+
+    async function handleCreate() {
         if(selectedType == "image" && imageData) {
-            imagePost(imageData);
+            await imagePost(Number(params.id), imageData);
         } else if(selectedType == "text" && textData) {
-            textPost(textData);
+            await textPost(Number(params.id), textData);
         }
+        getSubjectNotes(Number(params.id)).then(setNotes);
     }
 
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -90,6 +111,17 @@ export default function Subject() {
             <button className={styles.createBtn} onClick={handleCreate}>Criar</button>
 
             <section className={styles.postsSection}>
+                {notes.map((note) => (
+                    <Post
+                        key={note.id}
+                        type={note.type}
+                        content={
+                            note.type === "text"
+                            ? (note.data as string)
+                            : URL.createObjectURL(note.data as Blob)
+                        }
+                    />
+                ))}
                 <Post type="text" content="lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor"/>
             </section>
         </Container>

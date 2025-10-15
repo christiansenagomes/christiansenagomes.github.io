@@ -1,4 +1,4 @@
-type ContentType = {
+export type ContentType = {
     id: number;
     type: "image" | "text";
     content?: string;

@@ -9,13 +9,12 @@ interface PostType {
 export default function Post({ type, content }: PostType) {
     let element: JSX.Element = <></>
     if(type == "image")
-        element = <img src="content"></img>
+        element = <img src={content}></img>
     else
         element =  <p>{content}</p>
 
     return (
         <div className={styles.post}>
-            <h3>Anotação</h3>
             {element}
         </div>
     );
