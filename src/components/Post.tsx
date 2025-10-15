@@ -9,7 +9,7 @@ interface PostType {
 export default function Post({ type, content }: PostType) {
     let element: JSX.Element = <></>
     if(type == "image")
-        element = <img src={content}></img>
+        element = <img src={content} style={{maxWidth: "100%"}}></img>
     else
         element =  <p>{content}</p>
 

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import Container from "../../components/Container";
 import { DEFAULT_SUBJECTS, StudyStorage, type SubjectType } from "../../constants";
@@ -12,16 +13,24 @@ if(subjects.length == 0) {
 }
 
 export default function Home() {
+    const [subjects, setSubjects] = useState<SubjectType[]>([]);
+
+    useEffect(() => {
+        const unparsedSubjects: string | null = localStorage.getItem("subjects");
+        if(unparsedSubjects) {
+            setSubjects(JSON.parse(unparsedSubjects));
+        }
+        if(subjects.length == 0) {
+            localStorage.setItem(StudyStorage.SUBJECTS_TABLE, JSON.stringify(DEFAULT_SUBJECTS));
+            setSubjects(DEFAULT_SUBJECTS)
+        }
+    }, []);
+
     return (
         <Container>
             {subjects.map(subject => (
                 <Card key={subject.id.toString()} id={subject.id.toString()} name={subject.name.toString()}/>
             ))}
-            {/* <Card borderColor="#ffaaff" color="#ffddff"/>
-            <Card borderColor="#aaffff" color="#ddffff"/>
-            <Card borderColor="#ffffaa" color="#ffffdd"/>
-            <Card borderColor="#aa0000" color="#dd0000"/>
-            <Card borderColor="#00aa00" color="#00dd00"/> */}
         </Container>
     );
 }

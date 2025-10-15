@@ -121,7 +121,7 @@ export default function Subject() {
                         }
                     />
                 ))}
-                <Post type="text" content="lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor"/>
+                {/* <Post type="text" content="lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor"/> */}
             </section>
         </Container>
     );
