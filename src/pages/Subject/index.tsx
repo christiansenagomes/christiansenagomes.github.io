@@ -77,7 +77,7 @@ export default function Subject() {
         <Container style={{flexDirection: "column"}}>
             <div>
                 <h1>{subjects[subjectId].name}</h1>
-                <p>Você possui {subjects[subjectId].content?.length ?? "zero"} anotações</p>
+                <p>Você possui {notes.length} anotações</p>
                 {/* <p>[DEV]Current id: {params.id}</p> */}
             </div>
 
@@ -112,7 +112,7 @@ export default function Subject() {
             <section className={styles.postsSection}>
                 {notes.map((note) => (
                     <Post
-                        key={note.id}
+                        key={note.id + note.type}
                         type={note.type}
                         content={
                             note.type === "text"
