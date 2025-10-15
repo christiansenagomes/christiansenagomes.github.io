@@ -26,11 +26,43 @@ export default function Home() {
         }
     }, []);
 
+    async function sendNotification() {
+        if ('Notification' in window && navigator.serviceWorker) {
+            const permission = await Notification.requestPermission();
+            if (permission === 'granted') {
+                const registration = await navigator.serviceWorker.ready;
+                registration.showNotification('StudyNotes', {
+                    body: 'Não esqueça de fazer anotações 😡',
+                    icon: '/studynotes-192.png',
+                    badge: '/studynotes-192.png',
+                });
+            }
+        }
+    }
+
     return (
-        <Container>
-            {subjects.map(subject => (
-                <Card key={subject.id.toString()} id={subject.id.toString()} name={subject.name.toString()}/>
-            ))}
-        </Container>
+        <>
+            <Container>
+                <button
+                    style={{
+                    backgroundColor: '#5390c2',
+                    color: 'white',
+                    padding: '10px',
+                    border: 'none',
+                    borderRadius: '5px',
+                    margin: '10px',
+                    cursor: "pointer"
+                    }}
+                    onClick={sendNotification}
+                >
+                    Notificação teste
+                </button>
+            </Container>
+            <Container>
+                {subjects.map(subject => (
+                    <Card key={subject.id.toString()} id={subject.id.toString()} name={subject.name.toString()}/>
+                ))}
+            </Container>
+        </>
     );
 }
