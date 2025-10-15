@@ -75,7 +75,7 @@ export default function Subject() {
 
     return (
         <Container style={{flexDirection: "column"}}>
-            <div>
+            <div style={{margin: "10px"}}>
                 <h1>{subjects[subjectId].name}</h1>
                 <p>Você possui {notes.length} anotações</p>
                 {/* <p>[DEV]Current id: {params.id}</p> */}
@@ -98,7 +98,6 @@ export default function Subject() {
 
             {selectedType == "image" ? 
                 <div className={styles.inputDiv}>
-                    {/* <label htmlFor="imageUpload">Inserir anexo:</label> */}
                     <input type="file" accept="image/*" id={styles.imageUpload} onChange={handleImageChange} />
                 </div> 
                 :
@@ -121,7 +120,6 @@ export default function Subject() {
                         }
                     />
                 ))}
-                {/* <Post type="text" content="lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor lorem ipsu dolor"/> */}
             </section>
         </Container>
     );
