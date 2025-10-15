@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import Container from "../../components/Container";
 import { DEFAULT_SUBJECTS, StudyStorage, type SubjectType } from "../../constants";
+import { db } from "../../DB/db";
 
 let subjects: SubjectType[] = [];
 const unparsedSubjects: string | null = localStorage.getItem("subjects");
@@ -40,6 +41,12 @@ export default function Home() {
         }
     }
 
+    async function clearAllContents() {
+        await db.images.clear();
+        await db.textContents.clear();
+        alert("Todos os conteúdos foram deletados.");
+    }
+
     return (
         <>
             <Container>
@@ -62,6 +69,22 @@ export default function Home() {
                 {subjects.map(subject => (
                     <Card key={subject.id.toString()} id={subject.id.toString()} name={subject.name.toString()}/>
                 ))}
+            </Container>
+            <Container>
+                <button
+                    style={{
+                    backgroundColor: 'darkred',
+                    color: 'black',
+                    padding: '10px',
+                    border: 'none',
+                    borderRadius: '5px',
+                    margin: '10px',
+                    cursor: "pointer"
+                    }}
+                    onClick={clearAllContents}
+                >
+                    EXCLUIR TODOS OS CONTEÚDOS
+                </button>
             </Container>
         </>
     );

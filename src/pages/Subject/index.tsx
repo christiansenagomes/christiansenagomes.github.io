@@ -82,7 +82,7 @@ export default function Subject() {
             </div>
 
             <div className={styles.inputDiv}>
-                <h3>Tipo de post:</h3>
+                <h3>Tipo de anotação:</h3>
                 <div>
                     <input type="radio" id="textInputType" name="inputType" value="text"
                         checked={selectedType == "text"} onChange={(e) => setSelectedType(e.currentTarget.value)}/>
