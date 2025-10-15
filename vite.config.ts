@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "prompt",
+      registerType: "autoUpdate",
       manifest:{
         name:"StudyNotes",
         short_name:"Notes",
@@ -17,13 +17,13 @@ export default defineConfig({
           src: '/studynotes-192.png',
           sizes:'192x192',
           type:'image/png',
-          purpose:'favicon'
+          purpose:'any'
         },
         {
           src:'/studynotes-512.png',
           sizes:'512x512',
           type:'image/png',
-          purpose:'favicon'
+          purpose:'any'
         },
       ],
       display:"standalone",
