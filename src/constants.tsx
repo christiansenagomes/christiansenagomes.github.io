@@ -1,6 +1,8 @@
 type ContentType = {
     id: number;
     type: "image" | "text";
+    content?: string;
+    imageId?: number;
 }
 
 export type SubjectType = {
